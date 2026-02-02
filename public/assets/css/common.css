@@ -1,0 +1,150 @@
+
+h1,h2 {
+    background-color: rgb(197, 192, 192);
+    border: 1px solid rgb(157, 152, 152);
+    padding: 0.25em;
+    text-align: center;
+}
+
+p.text-header {
+    background-color: rgb(197, 192, 192);
+    /* border: 1px solid rgb(157, 152, 152); */
+    text-align: center;
+}
+
+
+.container hr {
+    width: 40%;
+}
+
+div.common-block {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#logo-ifrs {
+    display: none;
+}
+
+#logo-ifrs img {
+	width: 12%;
+}
+ 
+#logo-ifrs p {
+	line-height: 1.8px;
+}
+
+#resp-warning {
+    color: inherit;
+    text-decoration: none;
+}
+
+#error-box {
+    display: none;
+}
+
+ul.checkboxes li {
+    list-style: none;
+}
+
+ul.checkboxes li.list-group-item, ul.checkboxes li.active {
+    border: none;
+    background-color: white;
+}
+
+ul.checkboxes li.active {
+    /* background-color: rgb(215, 215, 215); */
+    color: black;
+    /* border-color: rgb(215, 215, 215); */
+}
+
+ul.checkboxes li {
+    margin-left: -15px;
+    /* content: '☑ '; */
+}
+
+/* ul.checkboxes li:before {
+    margin-left: -17px;
+    content: '☐ ';
+} */
+
+.carta {
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.btn-all-block {
+    width: 100%;
+    height: 100%;
+    padding: 20%;
+}
+
+div.simple-border{
+    margin-bottom: 10px;
+}
+
+div.cta-date legend {
+    font-size: 1rem;
+}
+
+.signature-box {
+    border-top: 1px solid black;
+}
+
+span.error:before{
+    content: "(";
+}
+
+span.error:after{
+    content: ")";
+}
+span.error {
+    margin-left: 1em;
+    color: red;
+}
+
+
+.is-invalid {
+    border-width: 2px;
+    border-style: dashed;
+}
+
+legend.is-invalid ~ span.invalid-feedback {
+    text-align: center;
+}
+
+fieldset.field-block legend {
+    font-weight: bold;
+    text-align: center;
+}
+
+.cta-date fieldset legend {
+    font-weight: normal;
+    text-align: left;
+}
+
+textarea.error-border, input.error-border, legend.error-border {
+    border: 3px dashed red;
+}
+
+.city-box {
+    text-align: right;
+}
+
+div.writer-line {
+    border-bottom: 1px solid black;
+}
+
+@media print {
+    div button.btn, .responsibility-warning {
+        display: none;
+    }
+
+    hr {
+        display: none;
+    }
+
+    #logo-ifrs {
+        display: block;
+    }
+}
