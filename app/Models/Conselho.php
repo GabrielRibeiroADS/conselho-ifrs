@@ -77,6 +77,53 @@ class Conselho extends Model
     }
 
     /**
+     * Relacionamento com Reuniões
+     */
+    public function reunioes()
+    {
+        return $this->hasMany(Reuniao::class)->orderBy('numero');
+    }
+
+    /**
+     * Obter número esperado de reuniões
+     */
+    public function getNumeroReunioesEsperadoAttribute(): int
+    {
+        return $this->tipo === 'anual' ? 3 : 2;
+    }
+
+    /**
+     * Verificar se todas as reuniões foram criadas
+     */
+    public function hasTodasReunioes(): bool
+    {
+        return $this->reunioes()->count() >= $this->numero_reunioes_esperado;
+    }
+
+    /**
+     * Verificar se todas as reuniões estão finalizadas
+     */
+    public function isCompleto(): bool
+    {
+        if (!$this->hasTodasReunioes()) {
+            return false;
+        }
+
+        return $this->reunioes()->where('status', '!=', 'finalizada')->count() === 0;
+    }
+
+    /**
+     * Obter progresso das reuniões (porcentagem)
+     */
+    public function getProgressoAttribute(): int
+    {
+        $total = $this->numero_reunioes_esperado;
+        $finalizadas = $this->reunioes()->where('status', 'finalizada')->count();
+
+        return $total > 0 ? (int) round(($finalizadas / $total) * 100) : 0;
+    }
+
+    /**
      * Obter descrição do período
      */
     public function getPeriodoAttribute(): string

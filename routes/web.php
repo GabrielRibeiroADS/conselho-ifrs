@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsuarioController;
 use App\Http\Controllers\Admin\EstudanteController;
 use App\Http\Controllers\Admin\PapelController;
 use App\Http\Controllers\Admin\ConselhoController;
+use App\Http\Controllers\Admin\ReuniaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,4 +79,22 @@ Route::middleware(['auth', 'password.changed'])->prefix('admin')->name('admin.')
 
     // CRUD Conselhos
     Route::resource('conselhos', ConselhoController::class);
+
+    // Reuniões de Conselhos
+    Route::prefix('conselhos/{conselho}/reunioes')->name('reunioes.')->group(function () {
+        Route::get('/', [ReuniaoController::class, 'index'])->name('index');
+        Route::post('/gerar', [ReuniaoController::class, 'gerar'])->name('gerar');
+        Route::get('/{reuniao}', [ReuniaoController::class, 'show'])->name('show');
+        Route::get('/{reuniao}/edit', [ReuniaoController::class, 'edit'])->name('edit');
+        Route::put('/{reuniao}', [ReuniaoController::class, 'update'])->name('update');
+        Route::post('/{reuniao}/finalizar', [ReuniaoController::class, 'finalizar'])->name('finalizar');
+        
+        // Avaliações
+        Route::post('/{reuniao}/avaliacoes/{avaliacao}', [ReuniaoController::class, 'salvarAvaliacao'])->name('avaliacoes.salvar');
+        
+        // Encaminhamentos
+        Route::post('/{reuniao}/avaliacoes/{avaliacao}/encaminhamentos', [ReuniaoController::class, 'adicionarEncaminhamento'])->name('encaminhamentos.adicionar');
+        Route::put('/{reuniao}/encaminhamentos/{encaminhamento}', [ReuniaoController::class, 'atualizarEncaminhamento'])->name('encaminhamentos.atualizar');
+        Route::delete('/{reuniao}/encaminhamentos/{encaminhamento}', [ReuniaoController::class, 'excluirEncaminhamento'])->name('encaminhamentos.excluir');
+    });
 });

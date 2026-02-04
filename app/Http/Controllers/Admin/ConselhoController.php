@@ -100,7 +100,7 @@ class ConselhoController extends Controller
      */
     public function show(Conselho $conselho)
     {
-        $conselho->load(['curso', 'estudantes']);
+        $conselho->load(['curso', 'estudantes', 'reunioes']);
 
         return view('admin.conselhos.show', compact('conselho'));
     }

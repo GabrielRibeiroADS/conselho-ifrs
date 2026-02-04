@@ -62,7 +62,7 @@
                 <th>Período</th>
                 <th>Tipo</th>
                 <th>Estudantes</th>
-                <th width="180">Ações</th>
+                <th width="220">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -86,6 +86,11 @@
                         <i class="bi bi-eye text-success"></i>
                     </a>
                     @endif
+
+                    {{-- Botão Reuniões --}}
+                    <a href="{{ route('admin.reunioes.index', $conselho) }}" class="btn btn-sm btn-outline-success" title="Reuniões">
+                        <i class="bi bi-calendar-event"></i>
+                    </a>
 
                     @if(auth()->user()->isAdmin() || auth()->user()->can('conselhos.edit'))
                     <a href="{{ route('admin.conselhos.edit', $conselho) }}" class="btn btn-sm btn-outline-success" title="Editar">
